@@ -137,6 +137,24 @@ namespace LINQ_gyakorlas
             {
                 Console.WriteLine("A megadott érték nem szám!");
             }
+
+
+            // Megszámlálás - Count()
+            Console.WriteLine("\nMeszámlálás");
+            Console.WriteLine("------------------------");
+
+            int studentCount = students.Count();
+
+            Console.WriteLine($"A tanulók száma: {studentCount} fő.");
+
+            Console.WriteLine("\nA legalább 4-s átlagú tanulók száma");
+            Console.WriteLine("------------------------");
+
+            int goodStudentCount = students.Count(st  => st.Average >= 4);
+
+            Console.WriteLine($"A legalább 4-es átlagú tanulók száma: {goodStudentCount} fő.");
+
+
         }
     }
 }
