@@ -19,7 +19,7 @@ namespace LINQ_gyakorlas
                     Name = "Kovács Anna",
                     Age = 16,
                     ClassName = "10.A",
-                    Average = 4.55
+                    Average = 4.85
                 },
 
                 new Student

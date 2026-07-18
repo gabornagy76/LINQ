@@ -60,7 +60,7 @@ namespace LINQ_gyakorlas
             var classAverages = students
                 // Csoportosítunk osztálynév (ClassName) szerint, az st egy egyedi Student objektum a students objektumlistából
                 .GroupBy(st => st.ClassName)
-                
+
                 // Kiválasztjuk a csoportból azokat a tulajdonságokat (mezőket), amelyekre szükségünk van.
                 .Select(classGroup => new
                 {
@@ -72,7 +72,7 @@ namespace LINQ_gyakorlas
                     OsztalyAtlag = classGroup.Average(st => st.Average)
                 });
 
-            foreach(var item in classAverages)
+            foreach (var item in classAverages)
             {
                 Console.WriteLine($"{item.Osztaly,4}: {item.TanuloSzam} fő, átlag: {item.OsztalyAtlag:F2}");
             }
@@ -119,10 +119,50 @@ namespace LINQ_gyakorlas
 
 
             // Szűrés és többszintű rendezés
-            // Szűrjük ki a legalább 3-as átlagú tanulókat, madj rendetül őket osztály szerint, azon belül átlag szerint csökkenően, azonos átlag esetén pedig név szerint növekvően.
-            Console.WriteLine("\n:Tanulók, akik VAGY a 10.A osztályba járnak VAGY legalább 4,5 az átlaguk ÉS legalább 16 évesek");
+            // Szűrjük ki a legalább 3-as átlagú tanulókat, madj rendezzük őket osztály szerint, azon belül átlag szerint csökkenően, azonos átlag esetén pedig név szerint növekvően.
+            Console.WriteLine("\nSzűrés és rendezés");
+            Console.WriteLine("------------------------");
+            IEnumerable<Student> orderedStudents = students
+                .Where(st => st.Average >= 3)
+                .OrderBy(st => st.ClassName)
+                .ThenByDescending(st => st.Average)
+                .ThenBy(st => st.Name);
+
+            foreach (Student item in orderedStudents)
+            {
+                Console.WriteLine(
+                    $"{item.Name,-18} - " +
+                    $"{item.ClassName,-5} - " +
+                    $"{item.Average,-4}"
+                    );
+            }
+
+
+            // Számított mező Select kategóriákkal.
+            // Minden tanuló mellé írjuk ki a szöveges értékelését is.
+            Console.WriteLine("\nSzöveges értékelés");
             Console.WriteLine("------------------------");
 
+            var studentResult = students
+                .Select(st => new
+                {
+                    TanuloNev = st.Name,
+                    TanuloAtlag = st.Average,
+
+                    Kategoria = st.Average >= 4.6 ? "Kiváló" :
+                                st.Average >= 3.6 ? "Jó" :
+                                st.Average >= 2.6 ? "Közepes" :
+                                st.Average >= 1.6 ? "Elégséges" : "Elégtelen"
+                });
+
+            foreach (var item in studentResult)
+            {
+                Console.WriteLine(
+                    $"{item.TanuloNev,-18} - " +
+                    $"{item.TanuloAtlag,-4:F2} - " +
+                    $"{item.Kategoria}"
+                    );    
+            }
         }
     }
 }
