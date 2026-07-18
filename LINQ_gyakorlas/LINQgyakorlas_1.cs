@@ -38,6 +38,21 @@ namespace LINQ_gyakorlas
             {
                 Console.WriteLine($"{item.Name,-18} - {item.Average,4:F2}");
             }
+
+
+            // Sorbarendezés
+            Console.WriteLine("\nNév szerinti sorbarendezés:");
+            Console.WriteLine("------------------------");
+
+            IEnumerable<Student> studentsByName = students.OrderBy(st => st.Name);
+
+            foreach (Student item in studentsByName)
+            {
+                Console.WriteLine($"{item.Name}");
+            }
+
+
+            // 
         }
     }
 }
