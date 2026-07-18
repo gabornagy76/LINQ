@@ -53,7 +53,35 @@ namespace LINQ_gyakorlas
             }
 
 
-            //
+            // Csoportműveletek
+            // Osztályátlag számítás
+            Console.WriteLine("\nOsztályonkénti átlag számítás:");
+            Console.WriteLine("------------------------");
+            var classAverages = students
+                // Csoportosítunk osztálynév (ClassName) szerint, az st egy egyedi Student objektum a students objektumlistából
+                .GroupBy(st => st.ClassName)
+                
+                // Kiválasztjuk a csoportból azokat a tulajdonságokat (mezőket), amelyekre szükségünk van.
+                .Select(classGroup => new
+                {
+                    // A .Key mindig azt a tulajdonságot jelenti ami alapján csoportosítottunk ( itt a .GroupBy(st => st.ClassName) )
+                    Osztaly = classGroup.Key,
+                    // Megnézi csoportonként, hogy hány darab eleme van az adott csoportnak:
+                    TanuloSzam = classGroup.Count(),
+                    // Átlagot számít csoportonként a tagok Average tulajdonsága (mezője) alapján:
+                    OsztalyAtlag = classGroup.Average(st => st.Average)
+                });
+
+            foreach(var item in classAverages)
+            {
+                Console.WriteLine($"{item.Osztaly,4}: {item.TanuloSzam} fő, átlag: {item.OsztalyAtlag:F2}");
+            }
+
+
+            // Több feltételes szűrés:
+            // Keressünk olyan tanulókat, akik legalább 16 évesek, legalább 3-as az átlaguk és nem a 12.C osztályba járnak.
+            Console.WriteLine("\n:");
+            Console.WriteLine("------------------------");
         }
     }
 }
