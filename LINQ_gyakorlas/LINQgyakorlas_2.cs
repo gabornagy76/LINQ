@@ -96,6 +96,32 @@ namespace LINQ_gyakorlas
             }
 
 
+            // Összett feltételt
+            // Keressük azokat, akik VAGY a 10.A osztályba járnak VAGY legalább 4,5 az átlaguk ÉS legalább 16 évesek.
+            Console.WriteLine("\n:Tanulók, akik VAGY a 10.A osztályba járnak VAGY legalább 4,5 az átlaguk ÉS legalább 16 évesek");
+            Console.WriteLine("------------------------");
+
+            IEnumerable<Student> selectedStudents_3 = students
+                .Where(st =>
+                (
+                st.ClassName == "10.A"
+                ||
+                st.Average >= 4.5
+                )
+                &&
+                st.Age >= 16
+                );
+
+            foreach (Student item in selectedStudents_3)
+            {
+                Console.WriteLine($"{item.Name,-18} - {item.Average,4} - {item.Age,2} - {item.ClassName,4}");
+            }
+
+
+            // Szűrés és többszintű rendezés
+            // Szűrjük ki a legalább 3-as átlagú tanulókat, madj rendetül őket osztály szerint, azon belül átlag szerint csökkenően, azonos átlag esetén pedig név szerint növekvően.
+            Console.WriteLine("\n:Tanulók, akik VAGY a 10.A osztályba járnak VAGY legalább 4,5 az átlaguk ÉS legalább 16 évesek");
+            Console.WriteLine("------------------------");
 
         }
     }
