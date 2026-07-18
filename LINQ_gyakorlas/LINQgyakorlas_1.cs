@@ -62,6 +62,37 @@ namespace LINQ_gyakorlas
             {
                 Console.WriteLine($"{item.Name,-18}  - {item.Average,4:F2}");
             }
+
+
+            // Több szempont szerinti rendezés
+            Console.WriteLine("\nosztály szerinti, majd név szerint csökkenő sorrend:");
+            Console.WriteLine("------------------------");
+
+            IEnumerable<Student> orderedStudents = students
+                .OrderBy(st => st.ClassName)
+                // Ez a záradék csak akkor lép életbe, ha az első rendezési szempont alapján több elem azonos helyre kerülne.
+                .ThenByDescending(st => st.Name);
+
+            foreach (Student item in orderedStudents)
+            {
+                Console.WriteLine($"{item.ClassName,-5}  - {item.Name,-18}");
+            }
+
+
+            // Select: Csak bizoyos adatok kiválasztása
+            Console.WriteLine("\nCsak a tanulónevek gyűjteménybe gyűjtése:");
+            Console.WriteLine("------------------------");
+
+            IEnumerable<string> studentNames = students
+                .Select(st => st.Name);
+
+            foreach(string item in studentNames)
+            {
+                Console.WriteLine(item);
+            }
+
+
+
         }
     }
 }
