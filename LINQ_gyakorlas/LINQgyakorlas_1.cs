@@ -86,7 +86,7 @@ namespace LINQ_gyakorlas
             IEnumerable<string> studentNames = students
                 .Select(st => st.Name);
 
-            foreach(string item in studentNames)
+            foreach (string item in studentNames)
             {
                 Console.WriteLine(item);
             }
@@ -109,6 +109,33 @@ namespace LINQ_gyakorlas
             foreach (var item in studentSummaries)
             {
                 Console.WriteLine($"{item.szamlalo,2}. {item.TanuloNev,-18} - {item.Osztaly,-4} : {item.Atlag}");
+            }
+
+
+            // Keresési függvények
+            Console.WriteLine("\nKeresés ID alapján");
+            Console.WriteLine("------------------------");
+            Console.Write("Melyik ID-jú tanulót keressük? ");
+
+            bool sikeresAtalakitas = int.TryParse(Console.ReadLine(), out int id);
+
+            if (sikeresAtalakitas)
+            {
+                Student? foundStudent = students.FirstOrDefault(st => st.Id == id);
+
+                if (foundStudent != null)
+                {
+                    Console.WriteLine($"A megtalálta tanuló: {foundStudent.Name}");
+                }
+                else
+                {
+                    Console.WriteLine("Nem található ilyen tanuló!");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("A megadott érték nem szám!");
             }
         }
     }
