@@ -155,6 +155,31 @@ namespace LINQ_gyakorlas
             Console.WriteLine($"A legalább 4-es átlagú tanulók száma: {goodStudentCount} fő.");
 
 
+            // Átlag, szélsőértékek
+            Console.WriteLine("\nÁtlag, minimum, maximum");
+            Console.WriteLine("------------------------");
+
+            double classAverage = students.Average(st => st.Average);
+
+            Console.WriteLine($"Az összesített átlag: {classAverage:F2}");
+
+            Console.WriteLine("\nMinimum");
+            Console.WriteLine("------------------------");
+
+            double lowestAverage = students.Min(st => st.Average);
+
+            Console.WriteLine($"A legalacsonyabb átlag: {lowestAverage}");
+
+            Console.WriteLine("\nMaximum");
+            Console.WriteLine("------------------------");
+
+            double highestAverage = students.Max(st => st.Average);
+
+            Console.WriteLine($"A legjobb átlag: {highestAverage}");
+
+
+            // A legjobb átlagú tanuló megkeresése.
+
         }
     }
 }
