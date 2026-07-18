@@ -150,7 +150,7 @@ namespace LINQ_gyakorlas
             Console.WriteLine("\nA legalább 4-s átlagú tanulók száma");
             Console.WriteLine("------------------------");
 
-            int goodStudentCount = students.Count(st  => st.Average >= 4);
+            int goodStudentCount = students.Count(st => st.Average >= 4);
 
             Console.WriteLine($"A legalább 4-es átlagú tanulók száma: {goodStudentCount} fő.");
 
@@ -203,7 +203,23 @@ namespace LINQ_gyakorlas
             }
 
 
+            // Vizsgálat, hogy van-e megfelelő elem - Any()
+            Console.WriteLine("\nVan-e 3-as átlag alatti tanuló:");
+            Console.WriteLine("------------------------");
 
+            bool hasWeakStudent = students.Any(st => st.Average < 3);
+
+            if (hasWeakStudent)
+            {
+                Console.WriteLine("Van 3-as átlag alatti tanuló a tanuló gyűjteményben.");
+            }
+            else
+            {
+                Console.WriteLine("Nincs 3-as átlag alatti tanuló a tanuló gyűjteményben.");
+            }
+
+
+            
         }
     }
 }
