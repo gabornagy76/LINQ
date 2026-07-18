@@ -24,6 +24,20 @@ namespace LINQ_gyakorlas
                     $"{item.Average} "
                     );
             }
+
+
+            // Where - szűrés
+            Console.WriteLine("\nLegalább 4-es átlagú tanulók:");
+            Console.WriteLine("------------------------");
+
+            IEnumerable<Student> goodStudents = students
+                // Az aktuális Student objektumot veszi és megtartja a feltételnek (az átlaga >= 4) megfelelőt
+                .Where(st => st.Average >= 4);
+
+            foreach (Student item in goodStudents)
+            {
+                Console.WriteLine($"{item.Name,-18} - {item.Average,4:F2}");
+            }
         }
     }
 }
