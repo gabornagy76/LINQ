@@ -179,6 +179,30 @@ namespace LINQ_gyakorlas
 
 
             // A legjobb átlagú tanuló megkeresése.
+            Console.WriteLine("\nA legjobb tanuló");
+            Console.WriteLine("------------------------");
+
+            Student? bestStudent = students
+                .OrderByDescending(st => st.Average)
+                .FirstOrDefault();
+
+            if (bestStudent != null)
+            {
+                Console.WriteLine($"A legjobb tanuló: {bestStudent.Name}, átlaga: {bestStudent.Average}");
+            }
+
+            // MaxBy() -al ugyanezt érhetjük el.
+            Console.WriteLine("\nMaxBy alkalmazásával:");
+            Console.WriteLine("------------------------");
+
+            Student? bestStudentMaxBy = students.MaxBy(st => st.Average);
+
+            if (bestStudentMaxBy != null)
+            {
+                Console.WriteLine($"A legjobb tanuló: {bestStudentMaxBy.Name}, átlaga: {bestStudentMaxBy.Average}");
+            }
+
+
 
         }
     }
