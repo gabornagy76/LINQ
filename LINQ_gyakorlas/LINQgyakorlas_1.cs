@@ -92,7 +92,24 @@ namespace LINQ_gyakorlas
             }
 
 
+            // Egyszerre több mező kiválasztása, névtelen objektumok létrehozásával.
+            Console.WriteLine("\nA tanuló nevét, osztályát és átlagának gyűjteménybe gyűjtése:");
+            Console.WriteLine("------------------------");
 
+            var studentSummaries = students
+                // A Select() első paramétere az adott objektum, a második egy int típusú index (0-tól).
+                .Select((st, index) => new
+                {
+                    szamlalo = ++index,
+                    TanuloNev = st.Name,
+                    Osztaly = st.ClassName,
+                    Atlag = st.Average
+                });
+
+            foreach (var item in studentSummaries)
+            {
+                Console.WriteLine($"{item.szamlalo,2}. {item.TanuloNev,-18} - {item.Osztaly,-4} : {item.Atlag}");
+            }
         }
     }
 }
