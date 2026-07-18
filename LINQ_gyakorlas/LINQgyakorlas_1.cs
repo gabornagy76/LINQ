@@ -52,7 +52,16 @@ namespace LINQ_gyakorlas
             }
 
 
-            // 
+            // Csökkenő sorrendbe rendezés
+            Console.WriteLine("\nÁtlag szerint csökkenő sorrend:");
+            Console.WriteLine("------------------------");
+
+            IEnumerable<Student> studentsByAverage = students.OrderByDescending(st => st.Average);
+
+            foreach (Student item in studentsByAverage)
+            {
+                Console.WriteLine($"{item.Name,-18}  - {item.Average,4:F2}");
+            }
         }
     }
 }
