@@ -80,8 +80,23 @@ namespace LINQ_gyakorlas
 
             // Több feltételes szűrés:
             // Keressünk olyan tanulókat, akik legalább 16 évesek, legalább 3-as az átlaguk és nem a 12.C osztályba járnak.
-            Console.WriteLine("\n:");
+            Console.WriteLine("\n:Tanulók, akik legalább 16 évesek, legalább 3-as az átlaguk és nem a 12.C osztályba járnak");
             Console.WriteLine("------------------------");
+            IEnumerable<Student> selectedStudents_2 = students
+                .Where(st =>
+                st.Age >= 16
+                &&
+                st.Average >= 3
+                &&
+                st.ClassName != "12.C");
+
+            foreach (Student item in selectedStudents_2)
+            {
+                Console.WriteLine($"{item.Name,-18} - {item.Age,2} éves - {item.Average,-4} - {item.ClassName,4}");
+            }
+
+
+
         }
     }
 }
